@@ -1,5 +1,7 @@
 //@ts-nocheck
 
+import { useCallback, useState } from "react";
+
 const { REACT_APP_GCP_CLIENT_ID: CLIENT_ID, REACT_APP_GCP_DRIVE_PICKER_API_KEY: API_KEY, REACT_APP_GCP_PROJECT_ID: APP_ID } = process.env;
 
 // Scope to use to access user's Drive items.
@@ -153,4 +155,13 @@ export async function openFilePickerAndDisplayResults() {
             document.body.appendChild(img);
         }
     })
+}
+
+export function useFilePickerResults() {
+    const [results, setResults] = useState<{ id: string, url: string, mimeType: string, base64: string }[]>([]);
+    const openPicker = useCallback(async () => {
+        const res = await gapiClient.openDriveFilePicker();
+        setResults(res);
+    });
+    return [results, openPicker] as [typeof results, typeof openPicker];
 }
