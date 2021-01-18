@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import { openFilePickerAndDisplayResults } from "./gapi";
+import "./App.css";
 
-function App() {
+const { REACT_APP_GCP_CLIENT_ID: CLIENT_ID, REACT_APP_GCP_DRIVE_PICKER_API_KEY: API_KEY, REACT_APP_GCP_PROJECT_ID: APP_ID } = process.env;
+
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Google Drive File Picker</h1>
+      <h2>
+        Before You begin Edit the <code>.env</code> File
+      </h2>
+      <button onClick={openFilePickerAndDisplayResults}>
+        <img
+          alt="google drive"
+          src="https://fonts.gstatic.com/s/i/productlogos/drive_2020q4/v8/web-64dp/logo_drive_2020q4_color_2x_web_64dp.png"
+        />
+      </button>
+      <br />
+      <br />
+      <br />
+      <h2>Enviroment Variables</h2>
+      <code style={{ whiteSpace: 'break-spaces' }}>
+        {JSON.stringify({ CLIENT_ID, API_KEY, APP_ID }, null, '\t')}
+      </code>
     </div>
-  );
-}
-
-export default App;
+  )
+};
