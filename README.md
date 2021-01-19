@@ -7,3 +7,7 @@
 1. install deps: `yarn`
 1. start the app: `yarn start`
 1. Enjoy! Gapi docs suck.
+
+[Picker API Reference](https://developers.google.com/picker)
+
+[Google client API Reference](https://github.com/google/google-api-javascript-client) 👎
